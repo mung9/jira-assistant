@@ -7,7 +7,6 @@
     "default_popup": "static/index.html",
     "default_icon": "static/icon_16x16.png"
   },
-  "permissions": ["activeTab"],
   "content_scripts": [
     {
       "matches": [
