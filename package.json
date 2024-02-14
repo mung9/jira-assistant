@@ -1,8 +1,20 @@
 {
   "scripts": {
-    "build": "rollup --config"
+    "build:dev": "rollup --config",
+    "build": "rollup --config && zip -vr dist.zip build/ static/ manifest.json"
   },
   "devDependencies": {
-    "rollup": "^4.10.0"
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "rollup": "^4.10.0",
+    "rollup-plugin-replace": "^2.2.0"
+  },
+  "dependencies": {
+    "@atlaskit/button": "^17.3.2",
+    "@atlaskit/css-reset": "^6.6.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-intl": "^2.9.0",
+    "styled-components": "^3.4.10"
   }
 }

@@ -1,17 +1,20 @@
 {
   "manifest_version": 3,
-  "name": "Hello Extensions",
-  "description": "Base Level Extension",
+  "name": "Jira Assistant",
+  "description": "Supplementing the lacking features of Jira",
   "version": "1.0",
   "action": {
-    "default_popup": "hello.html",
-    "default_icon": "hello_extensions.png"
+    "default_popup": "static/index.html",
+    "default_icon": "static/icon_16x16.png"
   },
+  "permissions": ["activeTab"],
   "content_scripts": [
     {
-      "matches": ["https://*/jira/software/c/projects/*"],
-      "css": [],
-      "js": ["content-script.js", "@atlaskit/button"]
+      "matches": [
+        "*://*.atlassian.net/jira/*", 
+        "*://*.atlassian.net/browse/*"
+      ],
+      "js": ["build/content-script.js"]
     }
   ]
 }
