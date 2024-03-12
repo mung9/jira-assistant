@@ -12,6 +12,7 @@
   "dependencies": {
     "@atlaskit/button": "^17.3.2",
     "@atlaskit/css-reset": "^6.6.2",
+    "@atlaskit/dropdown-menu": "^12.7.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-intl": "^2.9.0",
