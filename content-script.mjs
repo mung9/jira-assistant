@@ -1,7 +1,6 @@
 import {createElement} from 'react'
 import ReactDOM from 'react-dom';
 import Button from '@atlaskit/button';
-import DropdownMenu, { DropdownItem, DropdownItemGroup } from '@atlaskit/dropdown-menu';
 import {fetchIssueById} from './api.mjs'
 
 function run() {
@@ -12,16 +11,18 @@ function observeAndAttachCopyButton() {
         const observer = new MutationObserver((mutations) => {
                 mutations.forEach(() => {
                         attachCopyButtonToDetailPage()
-                        attackCopyButtonToDropdownList()
+                        attachCopyButtonToDropdownList()
                 });
         });
         observer.observe(document.body, {childList: true, subtree: true})
 }
 
 function attachCopyButtonToDetailPage() {
-        const buttonList = document.getElementsByClassName('_otyr1b66 _1yt4swc3 _1e0c116y')[0]
+        const taskDetailPageButtonListClassName = '_otyr1b66 _1e0c116y'
+        const copyButtonId = 'detail-page-copy-btn'
+        const buttonList = document.getElementsByClassName(taskDetailPageButtonListClassName)[0]
         if(buttonList) {
-                if(!document.getElementById('jira-utils')) {
+                if(!document.getElementById(copyButtonId)) {
                         const buttonWrapper = document.createElement('div');
                         buttonWrapper.id = 'jira-utils';
                         buttonWrapper.style = 'margin-left: 8px;'
@@ -32,17 +33,18 @@ function attachCopyButtonToDetailPage() {
         }
 }
 
-function attackCopyButtonToDropdownList() {
-        const list = document.getElementsByClassName('_1ul9uuw1 _c71ldgin')[0]
+function attachCopyButtonToDropdownList() {
+        const copyButtonId = 'dropdown-list-copy-btn'
+        const list = document.getElementsByClassName(copyButtonId)[0]
         if(list) {
                 if(!document.getElementById('jira-utils-1')) {
-                        const ul = list.getElementsByClassName('css-1t463rh')[0]
+                        const ul = list.getElementsByClassName('css-38wpj8')[0]
                         if(!ul || ul.children.length === 0) {
                                 return;
                         }
 
                         const nativeLi = ul.children[ul.children.length - 1]
-                        if(!nativeLi.className.includes('jira-utils-1')) {
+                        if(!nativeLi.className.includes(copyButtonId)) {
                                 const card = ul.closest('.sc-1tdshev-0.fRXtMT') // backlog task
                                         ?? ul.closest('._kqswstnw._1bsb1osq')  // backlog subtask
                                         ?? ul.closest('._1e0c1ule._kqswh2mm._1pby1wug')  // sprint task
@@ -52,7 +54,7 @@ function attackCopyButtonToDropdownList() {
                                 
                                 const taskIdComponent = card.querySelector('a.sc-8u98g6-0.hthrAf')  // backlog (crosslined)
                                         ?? card.querySelector('a.sc-8u98g6-0.fdiMTp')  // backlog task,subtask (plain)
-                                        ?? card.querySelector('span._1e0c1ule._1reo15vq') // sprint task
+                                        ?? card.querySelector('a._uizt1wug') // sprint task
                                 if(!taskIdComponent) {
                                         return;
                                 }
@@ -60,7 +62,7 @@ function attackCopyButtonToDropdownList() {
                                 const id = taskIdComponent.childNodes[0].textContent
 
                                 const copied = nativeLi.cloneNode(true)
-                                copied.className += ' jira-utils-1';
+                                copied.className += ' ' + copyButtonId
                                 
                                 const button = copied.getElementsByTagName('button')[0]
                                 if (button) {
