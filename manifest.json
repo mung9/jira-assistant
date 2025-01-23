@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Jira Assistant",
   "description": "Supplementing the lacking features of Jira",
-  "version": "1.0",
+  "version": "1.0.2",
   "action": {
     "default_popup": "static/index.html",
     "default_icon": "static/icon_16x16.png"
