@@ -24,7 +24,7 @@ function attachCopyButtonToDetailPage() {
         if(buttonList) {
                 if(!document.getElementById(copyButtonId)) {
                         const buttonWrapper = document.createElement('div');
-                        buttonWrapper.id = 'jira-utils';
+                        buttonWrapper.id =copyButtonId;
                         buttonWrapper.style = 'margin-left: 8px;'
                         buttonList.appendChild(buttonWrapper);
                         const copyBtn = createElement(Button, { onClick: () => copyTask(getIssueId())}, 'Copy');
@@ -37,7 +37,7 @@ function attachCopyButtonToDropdownList() {
         const copyButtonId = 'dropdown-list-copy-btn'
         const list = document.getElementsByClassName(copyButtonId)[0]
         if(list) {
-                if(!document.getElementById('jira-utils-1')) {
+                if(!document.getElementById(copyButtonId)) {
                         const ul = list.getElementsByClassName('css-38wpj8')[0]
                         if(!ul || ul.children.length === 0) {
                                 return;
